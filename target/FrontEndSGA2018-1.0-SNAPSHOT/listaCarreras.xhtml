@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="WEB-INF/template.xhtml">
+    <ui:define name="contenido">
+        <p:growl id="message" showDetail="true"></p:growl>
+        <p:dataTable rowKey="#{carrera.codigoCarrera}" var="carrera" id="carreras" value="#{carreraBean.carreras}" editable="true"
+                     selection="#{carreraBean.carreraSeleccionada}" selectionMode="single">
+            <f:facet name="header">
+                Lista de carreras
+            </f:facet>
+            <p:column headerText="Codigo carrera">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{carrera.codigoCarrera}"></h:outputText>
+                    </f:facet>
+                    <f:facet name="input">
+                        <h:inputText readonly="#{facesContext.renderResponse}" value="#{carrera.codigoCarrera}"></h:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>            
+            <p:column headerText="Descripcion">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{carrera.descripcion}"></h:outputText>
+                    </f:facet>
+                    <f:facet name="input">
+                        <h:inputText value="#{carrera.descripcion}"></h:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+
+            <f:facet name="footer">
+                <p:commandButton value="Regresar" action="index" />
+            </f:facet>
+            <p:column headerText="Opciones" style="width: 80px">
+                <p:rowEditor />
+            </p:column>
+            <p:ajax event="rowEdit" listener="#{carreraBean.editListener}"></p:ajax>
+        </p:dataTable>
+    </ui:define> 
+</ui:composition>
+

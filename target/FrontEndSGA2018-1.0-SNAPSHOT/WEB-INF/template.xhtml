@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="125"  header="Top" resizable="true" closable="true" collapsible="true">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand">
+                        <h:graphicImage library="imagenes" name="icono.png" />   
+                    </a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <h:link class="nav-link" value="Home" outcome="index"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link" value="Alumnos" outcome="listaAlumnos"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link" value="Carreras" outcome="listaCarreras"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link" value="Cursos" outcome="listaCursos"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link" value="Grupo académico" outcome="listaGrupoAcademico"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link" value="Puesto" outcome="listaPuesto"/>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <!-- Este es el footer que aparecera en todas las paginas -->
+                <footer class="bg-dark">
+                <h2>&copy; Desarrollo Web S.A. </h2>
+            </footer>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="West unit content." />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
+                <h:outputText value="Right unit content." />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <!-- aqui se inserta todo el contenido de las paginas -->
+                 <h:form id="formulariogeneral">
+                    <ui:insert name="contenido">
+                        <p:outputLabel value="Bienvenido a SGA" />
+                    </ui:insert>
+                 </h:form>
+            </p:layoutUnit>
+        </p:layout>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.js" target="head"/> 
+
+    </h:body>
+</html>
+
