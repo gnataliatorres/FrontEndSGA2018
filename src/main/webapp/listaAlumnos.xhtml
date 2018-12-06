@@ -67,12 +67,13 @@
                 <p:rowEditor />
             </p:column>
             <p:ajax event="rowEdit" listener="#{alumnoBean.editListener}"></p:ajax>
-        </p:dataTable>>
-            <p:growl id="alumnos" showDetail="true" />
-            <p:contextMenu>
-                <p:menuitem value="Eliminar"  icon="ui-icon-close"
-                            action="#{alumnoBean.eliminar}"
-                            update="alumnos" />
-            </p:contextMenu>
+        </p:dataTable>
+        <p:contextMenu for="alumnos">
+            <p:menuitem value="Eliminar"  icon="ui-icon-close"
+                        actionListener="#{alumnoBean.eliminar}"
+                        update="alumnos"
+                        ajax="false" />
+        </p:contextMenu>
+       
     </ui:define>
 </ui:composition>

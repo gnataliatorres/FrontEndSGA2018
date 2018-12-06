@@ -11,10 +11,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpDelete;
@@ -119,8 +117,6 @@ public class AlumnoBean {
         }catch(Exception e){
             e.printStackTrace();
         }
-         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Success","Registro eliminado");
-         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     public void reiniciarAlumnoSeleccionado(){
         alumnoSeleccionado = new Alumno();
