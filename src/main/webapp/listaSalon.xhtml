@@ -9,28 +9,38 @@
     
    <ui:define name="contenido">
             <p:growl id="message" showDetail="true"></p:growl>
-            <p:dataTable rowKey="#{puesto.codigoPuesto}" var="puesto" id="puestos" value="#{puestoBean.puestos}" editable="true"
-                         selection="#{puestoBean.puestoSeleccionado}" selectionMode="single">
+            <p:dataTable rowKey="#{salon.codigoSalon}" var="salon" id="salones" value="#{salonBean.salones}" editable="true"
+                         selection="#{salonBean.salonSeleccionado}" selectionMode="single">
                 <f:facet name="header">
-                    Lista de puestos
+                    Lista de salones
                 </f:facet>
-                <p:column headerText="Codigo puesto">
+                <p:column headerText="Codigo salon">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{puesto.codigoPuesto}"></h:outputText>
+                            <h:outputText value="#{salon.codigoSalon}"></h:outputText>
                         </f:facet>
                         <f:facet name="input">
-                            <h:inputText readonly="#{facesContext.renderResponse}" value="#{curso.codigoCurso}"></h:inputText>
+                            <h:inputText readonly="#{facesContext.renderResponse}" value="#{salon.codigoSalon}"></h:inputText>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>            
                 <p:column headerText="Descripcion">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{puesto.descripcion}"></h:outputText>
+                            <h:outputText value="#{salon.descripcion}"></h:outputText>
                         </f:facet>
                         <f:facet name="input">
-                            <h:inputText value="#{puesto.descripcion}"></h:inputText>
+                            <h:inputText value="#{salon.descripcion}"></h:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                 <p:column headerText="Unidad">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{salon.unidad}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{salon.unidad}"></h:inputText>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
@@ -40,7 +50,8 @@
             <p:column headerText="Opciones" >
                 <p:rowEditor />
             </p:column>
-            <p:ajax event="rowEdit" listener="#{puestoBean.editListener}"></p:ajax>
+            <p:ajax event="rowEdit" listener="#{salonBean.editListener}"></p:ajax>
             </p:dataTable>
     </ui:define>
 </ui:composition>
+

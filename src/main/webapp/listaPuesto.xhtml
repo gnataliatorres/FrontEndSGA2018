@@ -1,52 +1,46 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>SGA</title>
-        <link href = "assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link href = "assets/css/style.css" rel="stylesheet" />
-    </h:head>
-    <h:body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                <img src="assets/img/icono.png" width="30" height="30" alt=""/>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="Home" outcome="index"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="Alumnos" outcome="listaAlumnos"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="Carreras" outcome="listaCarreras"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="Cursos" outcome="listaCursos"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="Grupo académico" outcome="listaGrupoAcademico"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="Puesto" outcome="listaPuesto"/>
-                    </li>
-                </ul>
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2"/>                         
-                    <h:button class="btn btn-outline-success my-2 my-sm-0" />
-                </h:form>
-            </div>
-        </nav>
-         <footer class="bg-dark">
-                <h2>&copy; Desarrollo Web S.A. </h2>
-                
-        </footer>
-    <script src="assets/js/jquery-3.3.1.min.js" />
-    <scripr src="assets/js/bootstrap.min.js" />    
-    </h:body>
-</html>
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="WEB-INF/template.xhtml">
+    
+   <ui:define name="contenido">
+            <p:growl id="message" showDetail="true"></p:growl>
+            <p:dataTable rowKey="#{puesto.codigoPuesto}" var="puesto" id="puestos" value="#{puestoBean.puestos}" editable="true"
+                         selection="#{puestoBean.puestoSeleccionado}" selectionMode="single">
+                <f:facet name="header">
+                    Lista de puestos
+                </f:facet>
+                <p:column headerText="Codigo puesto">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{puesto.codigoPuesto}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText readonly="#{facesContext.renderResponse}" value="#{curso.codigoCurso}"></h:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>            
+                <p:column headerText="Descripcion">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{puesto.descripcion}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{puesto.descripcion}"></h:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+            <f:facet name="footer">
+                <p:commandButton value="Regresar" action="index" />
+            </f:facet>
+            <p:column headerText="Opciones" >
+                <p:rowEditor />
+            </p:column>
+            <p:ajax event="rowEdit" listener="#{puestoBean.editListener}"></p:ajax>
+            </p:dataTable>
+    </ui:define>
+</ui:composition>
